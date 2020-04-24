@@ -27,3 +27,4 @@ lineToRead = 0
 playSpeed = 0.01
 trace = None
 go = False
+

@@ -14,13 +14,14 @@ root = tk.Tk()
 root.resizable(0,0)
 root.wm_attributes("-topmost",1)
 width = 1000
-height = 500
+height = 700
 data.center = [width/2, height/2]
 canvas = tk.Canvas(root, width=width,height=height, bd=0, highlightthickness=0)
 canvas.pack()
 
-canvas.create_oval(data.center[0],data.center[1],data.center[0]+10,data.center[1]+10,fill='green')
-
+#canvas.create_oval(data.center[0],data.center[1],data.center[0]+10,data.center[1]+10,fill='green')
+canvas.create_line(data.center[0] -5,data.center[1],data.center[0]+5,data.center[1])
+canvas.create_line(data.center[0] ,data.center[1]-5,data.center[0],data.center[1]+5)
 play = players(canvas)
 
 FP = FileProc(play)

@@ -19,8 +19,7 @@ class FileProc:
             id = procLine[0]
             if(data.log):
                 print(procLine)
-            if(data.log):
-                print(procLine)
+
             if id in data.notUse:
                 #readNextLine()
                 return True
@@ -34,11 +33,11 @@ class FileProc:
                 #readNextLine()
                 return True
             if id == data.AddCombatant:
-                
-                if(procLine[12] != '44' ):  
-                    temp = self.play.addObj(procLine[2],procLine[3],float(procLine[17]),float(procLine[18]),float(procLine[19]),float(procLine[20]))
-                    if(procLine[10] == '11540' or procLine[10] == '11541'): # Furor adds that start hidden 
-                        temp.hide()
+                self.play.addObj(procLine)
+                #if(procLine[12] != '44' ):  
+                #    temp = self.play.addObj(procLine[2],procLine[3],float(procLine[17]),float(procLine[18]),float(procLine[19]),float(procLine[20]))
+                #    if(procLine[10] == '11540' or procLine[10] == '11541'): # Furor adds that start hidden 
+                #        temp.hide()
                 #readNextLine()
                 return True
             if id == data.NetworkUpdateHP:
