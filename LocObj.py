@@ -3,9 +3,9 @@ class LocObj:
     def __init__(self,canvas, color, x, y, name, id):
         self.canvas = canvas
         self.id = id
-        self.size = 15
-        self.icon = canvas.create_oval(10,10,25,25,fill=color)
-        self.label = canvas.create_text(10,10,text=name)
+        self.size = 5
+        self.icon = canvas.create_oval(0,0,self.size,self.size,fill=color)
+        self.label = canvas.create_text(0,0,text=name)
         self.name = name
         self.move(x,y)
         #if(data.log):
