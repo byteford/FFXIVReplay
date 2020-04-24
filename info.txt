@@ -1,0 +1,24 @@
+https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md
+
+03: AddCombatant
+
+Structure: 03:[ObjectId]:Added new combatant [Combatant Name]. Job: [Job-ID] Level: [Level-Value] Max HP: [Max-HP-Value] Max MP: [Max-MP-Value] Pos: ([X-Pos],[Z-Pos],[Y-Pos])
+
+15: NetworkAbility
+
+29	-653.9767	target x position
+30	-807.7275	target y position
+31	31.99997	target z position
+38	-653.0394	caster x position
+39	-807.9677	caster y position
+40	31.99997	caster z position
+
+1B: NetworkTargetIcon (Head Markers) might be a nice in the future
+
+23: NetworkTether might be nice in the future
+
+25: NetworkEffectResult Structure: 25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]
+
+26: NetworkStatusEffects Structure: 26:[Target Id]:[Target Name]:[Job Levels]:[Current HP]:[Max Hp]:[Current Mp]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:<status list; format unknown>
+
+27: NetworkUpdateHP 27:[Target ID]:[Target Name]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[position X]:[position Y]:[position Z]:[Facing]

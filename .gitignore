@@ -1,0 +1,4 @@
+*.gif
+log.log
+__pycache__/*
+.vscode/*
