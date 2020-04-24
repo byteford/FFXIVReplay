@@ -43,7 +43,6 @@ class players:
         data.LookPos = [x,y]
         #data.playerOffset = [(data.center[0]+ x)*data.scale,(data.center[1] +y)*data.scale]
         data.playerOffset = [x,y]
-        print(data.playerOffset)
         return
     def resetCam(self):
         self.setCam(data.LookPos[0],data.LookPos[1])

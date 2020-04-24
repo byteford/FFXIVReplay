@@ -20,10 +20,10 @@ def outClick(event):
     play.resetCam()
     play.resetMove()
 def speedUpClick(event):
-    data.playSpeed = data.playSpeed*2
+    data.playSpeed = data.playSpeed/2
     print(data.playSpeed)
 def speedDownClick(event):
-    data.playSpeed = data.playSpeed/2
+    data.playSpeed = data.playSpeed*2
     print(data.playSpeed)
 def loadFile(event):
     data.fileName = tk.filedialog.askopenfilename()
@@ -36,6 +36,12 @@ def leftClick(event):
     play.moveCam(1,0)
 def rightClick(event):
     play.moveCam(-1,0)
+def pauseClick(event):
+    global go
+    go = False
+def toggleLogClick(event):
+    data.log = not data.log
+    print("Log set to: ", data.log)
 def readNextLine():
     #line = log.readline()
     data.lineToRead = data.lineToRead + 1
@@ -50,7 +56,8 @@ def setLineToRead(lineNum):
 def processLine(procLine):
     try:
         id = procLine[0]
-        print(procLine)
+        if(data.log):
+            print(procLine)
         if(data.log):
             print(procLine)
         if id in data.notUse:
@@ -71,7 +78,6 @@ def processLine(procLine):
                 temp = play.addObj(procLine[2],procLine[3],float(procLine[17]),float(procLine[18]),float(procLine[19]),float(procLine[20]))
                 if(procLine[10] == '11540' or procLine[10] == '11541'): # Furor adds that start hidden 
                     temp.hide()
-                print(procLine)
             #readNextLine()
             return True
         if id == data.NetworkUpdateHP:
@@ -151,19 +157,24 @@ zoomInBtn = tk.Button(buttonFrame, text='In')
 zoomOutBtn = tk.Button(buttonFrame, text="out")
 speedUpBtn = tk.Button(buttonFrame, text='+')
 speedDownBtn = tk.Button(buttonFrame, text="-")
+pauseBtn = tk.Button(buttonFrame, text="pause")
+toggleLogBtn = tk.Button(buttonFrame, text="ToggleLog")
 nextBtn.grid(row=0, column=1, sticky="ew")
 contBtn.grid(row=0, column=2, sticky="ew")
 zoomInBtn.grid(row=1, column=1, sticky="ew")
 zoomOutBtn.grid(row=1, column=2, sticky="ew")
 speedUpBtn.grid(row=2, column=1, sticky="ew")
 speedDownBtn.grid(row=2, column=2, sticky="ew")
+pauseBtn.grid(row=3, column=1, sticky="ew")
+toggleLogBtn.grid(row=3,column=2, sticky="ew")
 nextBtn.bind('<Button-1>', nextClick)
 contBtn.bind('<Button-1>', contClick)
 zoomInBtn.bind('<Button-1>', InClick)
 zoomOutBtn.bind('<Button-1>', outClick)
 speedUpBtn.bind('<Button-1>', speedUpClick)
 speedDownBtn.bind('<Button-1>', speedDownClick)
-
+pauseBtn.bind('<Button-1>', pauseClick)
+toggleLogBtn.bind('<Button-1>', toggleLogClick)
 upBtn= tk.Button(arrowFrame, text='up')
 downBtn= tk.Button(arrowFrame, text='down')
 leftBtn= tk.Button(arrowFrame, text='left')
@@ -188,10 +199,6 @@ popupMenu.pack()
 LoadFileBtn = tk.Button(None, text="Load File")
 LoadFileBtn.pack()
 LoadFileBtn.bind('<Button-1>', loadFile)
-
-
-
-
 
 
 
@@ -226,7 +233,6 @@ loadZone()
 
 global go
 go = readNextLine()
-
 
 
 while 1:
