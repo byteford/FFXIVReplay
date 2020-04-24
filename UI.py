@@ -63,16 +63,17 @@ class UI:
         if(data.trace != None):
             self.popupVar.trace_vdelete("w", data.trace)
         data.trace = self.popupVar.trace("w",popupMenuCallBack)
+    def setupButtons(self):
 
-    def __init__(self, root, play, fileProc):
-        self.root = root
-        self.play = play
-        self.fileProc = fileProc
-        self.buttonFrame = tk.Frame(self.root)
-        self.buttonFrame.pack(side="right", fill="x")
+        self.parentFrame = tk.Frame(self.root)
+        self.parentFrame.grid(row=1,column=0)
+        self.midFrame = tk.Frame(self.parentFrame)
+        self.midFrame.grid(row=0,column=1)
+        self.buttonFrame = tk.Frame(self.parentFrame)
+        self.buttonFrame.grid(row=0,column=0)
 
-        self.arrowFrame = tk.Frame(self.root)
-        self.arrowFrame.pack(side="left", fill="x")
+        self.arrowFrame = tk.Frame(self.parentFrame)
+        self.arrowFrame.grid(row=0,column=2)
 
         self.buttonFrame.grid_columnconfigure(0,weight=1)
         self.arrowFrame.grid_columnconfigure(0,weight=1)
@@ -118,10 +119,28 @@ class UI:
         self.popupVar = tk.StringVar(None)
         self.popupVar.set('Choose Zone')
         self.choises = [2,3,1]
-        self.popupMenu = tk.OptionMenu(None,self.popupVar,*self.choises)
-        self.popupMenu.pack()
+        self.popupMenu = tk.OptionMenu(self.midFrame,self.popupVar,*self.choises)
+        self.popupMenu.grid(row=0,column=0)
 
-        self.LoadFileBtn = tk.Button(None, text="Load File")
-        self.LoadFileBtn.pack()
+        self.LoadFileBtn = tk.Button(self.midFrame, text="Load File")
+        self.LoadFileBtn.grid(row=1,column=0)
         self.LoadFileBtn.bind('<Button-1>', self.loadFile)
         self.loadZone()
+    def setUpSidePannel(self):
+        self.sidePannelFrame = tk.Frame(self.root)
+        self.sidePannelFrame.grid(row=0,column=2)
+        self.cast = tk.Label(self.sidePannelFrame, text="im a casting")
+        self.cast.pack(side="top")
+        return
+    def addPlayer(self, player):
+        print("add: ", player, " to the ui")
+        return
+    def clearPlayers(self):
+        return
+    def __init__(self, root, play, fileProc):
+        self.root = root
+        self.play = play
+        self.fileProc = fileProc
+        self.setupButtons()
+        self.setUpSidePannel()
+        

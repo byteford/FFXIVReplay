@@ -17,7 +17,7 @@ width = 1000
 height = 700
 data.center = [width/2, height/2]
 canvas = tk.Canvas(root, width=width,height=height, bd=0, highlightthickness=0)
-canvas.pack()
+canvas.grid(row=0,column=0)
 
 #canvas.create_oval(data.center[0],data.center[1],data.center[0]+10,data.center[1]+10,fill='green')
 canvas.create_line(data.center[0] -5,data.center[1],data.center[0]+5,data.center[1])
