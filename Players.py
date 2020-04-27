@@ -21,10 +21,10 @@ class players:
                 self.cam.setCam(x,y)
             if(self.getObj(id) == None):
                 if(id.startswith("400")):
-                    colour = 'red'
+                    NPC = True
                 else:
-                    colour = 'green'
-                temp = LocObj(self.canvas, colour,x,y, name,id,hp,maxHp,mana,maxMana)
+                    NPC = False
+                temp = LocObj(self.canvas, NPC,x,y, name,id,hp,maxHp,mana,maxMana)
                 self.players.append(temp)
                 self.UI.addPlayer(temp)
                 if(arr[10] in startHidden ): # Furor adds that start hidden 

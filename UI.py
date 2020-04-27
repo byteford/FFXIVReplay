@@ -75,7 +75,7 @@ class UI:
     def setupButtons(self):
 
         self.parentFrame = tk.Frame(self.root)
-        self.parentFrame.grid(row=1,column=0)
+        self.parentFrame.grid(row=1,column=1)
         self.midFrame = tk.Frame(self.parentFrame)
         self.midFrame.grid(row=0,column=1)
         self.buttonFrame = tk.Frame(self.parentFrame)
@@ -136,26 +136,18 @@ class UI:
         self.LoadFileBtn.bind('<Button-1>', self.loadFile)
         self.loadZone()
     def setUpSidePannel(self):
-        self.sidePannelFrame = tk.Frame(self.root)
-        self.sidePannelFrame.grid(row=0,column=2)
-        self.cast = tk.Label(self.sidePannelFrame, text="im a casting")
-        self.cast.pack(side="top")
+        self.LsidePannelFrame= tk.Frame(self.root)
+        self.LsidePannelFrame.grid(row=0,column=0)
+        self.RsidePannelFrame = tk.Frame(self.root)
+        self.RsidePannelFrame.grid(row=0,column=2)
         return
     def addPlayer(self, player):
-        #self.playerFrame = tk.Frame(self.sidePannelFrame)
-        #self.playerFrame.pack()
-        #self.player = tk.Label(self.playerFrame,text=player.name)
-        #self.player.pack(side="left")
-        #self.stats = tk.Frame(self.playerFrame)
-        #self.stats.pack()
-        #self.hp = Progressbar(self.stats, maximum=player.maxHp, value=player.hp)
-        #self.hp.pack()
-        #self.mana = Progressbar(self.stats, maximum=player.maxMana, value=player.mana)
-        #self.mana.pack()
-        self.playerBar.addPlayer(player)
+        if(player.NPC):
+            self.playerBar.addNPC(player)
+        else:
+            self.playerBar.addPlayer(player)
         return
     def removePlayer(self,player):
-        print("removePlay")
         self.playerBar.removePlayer(player)
         return
     def clearPlayers(self):
@@ -172,6 +164,6 @@ class UI:
         self.moveCamEvt = Event()
         self.CamResetEvt = Event()
 
-        self.playerBar = UIPlayerList(self.sidePannelFrame)
+        self.playerBar = UIPlayerList(self.LsidePannelFrame,self.RsidePannelFrame)
         
         

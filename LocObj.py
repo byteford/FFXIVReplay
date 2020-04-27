@@ -1,10 +1,11 @@
 import data
 class LocObj:
-    def __init__(self,canvas, color, x, y, name, id,hp,maxHp, mana, maxMana ):
+    def __init__(self,canvas, NPC, x, y, name, id,hp,maxHp, mana, maxMana ):
         self.canvas = canvas
         self.id = id
         self.size = 5
-        self.icon = canvas.create_oval(0,0,self.size,self.size,fill=color)
+        self.NPC = NPC
+        self.icon = canvas.create_oval(0,0,self.size,self.size,fill= ("red" if NPC else "green"))
         self.label = canvas.create_text(0,0,text=name)
         self.name = name
         self.move(x,y)
@@ -12,6 +13,7 @@ class LocObj:
         self.hp = hp
         self.maxMana = maxMana
         self.mana = mana
+        
         #if(data.log):
         print(id,": Created: ", self.name, " at: ", self.x," : ", self.y)
     def __del__(self):
