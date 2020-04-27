@@ -154,6 +154,15 @@ class UI:
         self.playerBar.clearPlayers()
     def update(self):
         self.playerBar.update()
+    def startCast(self, ability):
+        self.playerBar.startCast(ability)
+    def hitCast(self, ability):
+        self.playerBar.hitCast(ability)
+        return
+    def stopCast(self, player):
+        
+        self.playerBar.stopCast(player)
+        return
     def __init__(self, root):
         self.root = root
         #self.cam = cam

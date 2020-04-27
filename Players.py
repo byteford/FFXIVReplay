@@ -1,5 +1,6 @@
 import data
 from LocObj import LocObj
+from ability import ability
 startHidden = {'11540','11541'}
 class players:    
     def __init__(self,cam, canvas, UI):
@@ -63,4 +64,17 @@ class players:
     def resetMove(self):
         for p in self.players:
             p.resetLoc()
+    def castAbility(self, playerId, abilityName, abilityId,targetId, castTime):
+        play = self.getObj(playerId)
+        abil = ability(abilityName,abilityId,self.getObj(playerId), targetId, castTime=castTime)
+        play.startCasting(abil)
+        self.UI.startCast(abil)
+    def hitAbility(self,playerId, abilityName, abilityId,targetId):
+        play = self.getObj(playerId)
+        #print(play.isCasting(abilityId))
+        if(play.isCasting(abilityId)):
+            play.stopCasting()
+            self.UI.stopCast(play)
+            return
+        self.UI.hitCast(ability(abilityName,abilityId,play, targetId))
 

@@ -1,6 +1,7 @@
 NetworkEffectResult = '37' #Hex 25
 NetworkStatusEffects = '38' #Hex 26
 NetworkUpdateHP = '39' #Hex 27
+NetworkStartsCasting = '20' #Hex 14
 NetworkAbility = '21' #Hex 15
 NetworkAOEAbility = '22' #Hex 16 same info as NetworkAbility
 NetworkDoT = '24' #Hex 18
@@ -10,7 +11,7 @@ ChangePrimaryPlayer = '02' # Hex 02  - use to work out name of YOU
 AddCombatant = '03' #Hex 03 - called when ever a new object is added to the scene
 RemoveCombatant = '04' #Hex 04 - called when ever a Object is removed from scene
 EOF = ''
-notUse = ['00', '11','12','20','23','25','26','27','29','30','31','33','35','36','249','250','251','253'] 
+notUse = ['00', '11','12','23','25','26','27','29','30','31','33','35','36','249','250','251','253'] 
 #33 is used for misc zone commands inc wipes
 #34 can be used to see if a mob is targetable
 #35 network teather

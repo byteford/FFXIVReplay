@@ -22,8 +22,14 @@ class UIPlayerList():
             if(p.player.id == player.id):
                 return p
         return None
-    def startCast(self, player, ability):
+    def startCast(self, ability):
+        self.getPlayerUI(ability.player).startCast(ability)
         return
+    def hitCast(self,ability):
+        self.getPlayerUI(ability.player).hitCast(ability)
+    def stopCast(self, player):
+        
+        self.getPlayerUI(player).stopCast()
 class UIPlayer():
     def __init__(self, root, player):
         self.player = player
@@ -31,15 +37,30 @@ class UIPlayer():
         self.playerFrame = tk.Frame(self.root)
         self.playerFrame.pack()
         self.playerLbl = tk.Label(self.playerFrame,text=player.name)
-        self.playerLbl.pack(side="left")
+        self.playerLbl.pack(side="top")
         self.stats = tk.Frame(self.playerFrame)
         self.stats.pack()
         self.hp = Progressbar(self.stats,style="green.Horizontal.TProgressbar", maximum=player.maxHp, value=player.hp)
-        self.hp.pack()
+        self.hp.pack(side="left")
         self.mana = Progressbar(self.stats,style="blue.Horizontal.TProgressbar", maximum=player.maxMana, value=player.mana)
         self.mana.pack()
-        
-       
+        self.castFrame = tk.Frame(self.playerFrame)
+        self.castFrame.pack()
+        self.castText = tk.StringVar()
+        self.castText.set("cast")
+        self.castLable = tk.Label(self.castFrame, textvariable=self.castText)
+        self.castLable.pack(side="left")
+        self.castBar = Progressbar(self.castFrame,maximum=100, value = 50)
+        self.castBar.pack()
+    def startCast(self, ability):
+        self.castBar['value'] = 0
+        self.castText.set(ability.name) 
+    def hitCast(self, ability):
+        if(ability.name != "Attack"):
+            self.castText.set(ability.name) 
+    def stopCast(self):
+        self.castBar['value'] = 100
+        pass
     def update(self):
         self.hp['value'] = self.player.hp
         self.mana['value'] = self.player.mana

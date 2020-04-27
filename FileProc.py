@@ -42,15 +42,18 @@ class FileProc:
             if id == data.RemoveCombatant:
                 self.play.removeObj(procLine[2])
                 return True
+            if id == data.NetworkStartsCasting:
+                self.play.castAbility(procLine[2].lower(),procLine[5],procLine[4],procLine[6], procLine[8])
+                return True
             if id == data.NetworkAbility: #can move target
-                
+                self.play.hitAbility(procLine[2].lower(),procLine[5],procLine[4],procLine[6])
                 self.play.moveObj(procLine[2].lower(),float(procLine[40]),float(procLine[41]),float(procLine[42]),float(procLine[43]))
                 self.play.UpdateObjStat(procLine[2].lower(),float(procLine[34]),float(procLine[35]),float(procLine[36]),float(procLine[37]))
                 if(procLine[2] != procLine[3]):
                     self.play.moveObj(procLine[6].lower(),float(procLine[30]),float(procLine[31]),float(procLine[32]),float(procLine[33]))
                     self.play.UpdateObjStat(procLine[6].lower(),float(procLine[24]),float(procLine[25]),float(procLine[26]),float(procLine[27]))
                 return True
-            if id == data.NetworkAOEAbility:
+            if id == data.NetworkAOEAbility: # next to add end
                 self.play.moveObj(procLine[2].lower(),float(procLine[40]),float(procLine[41]),float(procLine[42]),float(procLine[43]))
                 self.play.UpdateObjStat(procLine[2].lower(),float(procLine[34]),float(procLine[35]),float(procLine[36]),float(procLine[37]))
                 if(procLine[2] != procLine[3]):
@@ -66,7 +69,6 @@ class FileProc:
                 self.play.UpdateObjStat(procLine[2].lower(),float(procLine[5]),float(procLine[6]),float(procLine[7]),float(procLine[8]))
                 return True
             if id == data.NetworkNameToggle:
-                print(procLine[2].lower())
                 temp = self.play.getObj(procLine[2].lower())
                 if(bool(int(procLine[6]))):
                     temp.show()

@@ -13,7 +13,8 @@ class LocObj:
         self.hp = hp
         self.maxMana = maxMana
         self.mana = mana
-        
+        self.casting = False
+        self.ability = None
         #if(data.log):
         print(id,": Created: ", self.name, " at: ", self.x," : ", self.y)
     def __del__(self):
@@ -44,3 +45,14 @@ class LocObj:
         self.hp = hp
         self.maxMana = maxMana
         self.mana = mana
+    def startCasting(self,ability):
+        self.casting = True
+        self.ability = ability
+    def isCasting(self, abilityID):
+        
+        return self.casting and abilityID == self.ability.id
+    def stopCasting(self):
+        temp = self.ability
+        self.casting = False
+        self.ability = None
+        return temp
