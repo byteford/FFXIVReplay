@@ -43,7 +43,8 @@ class FileProc:
                 self.play.removeObj(procLine[2])
                 return True
             if id == data.NetworkStartsCasting:
-                self.play.castAbility(procLine[2].lower(),procLine[5],procLine[4],procLine[6], procLine[8])
+                print(procLine)
+                self.play.castAbility(procLine[2].lower(),procLine[5],procLine[4],procLine[6],procLine[1], procLine[8])
                 return True
             if id == data.NetworkAbility: #can move target
                 self.play.hitAbility(procLine[2].lower(),procLine[5],procLine[4],procLine[6])

@@ -64,9 +64,9 @@ class players:
     def resetMove(self):
         for p in self.players:
             p.resetLoc()
-    def castAbility(self, playerId, abilityName, abilityId,targetId, castTime):
+    def castAbility(self, playerId, abilityName, abilityId,targetId,startTime, castTime):
         play = self.getObj(playerId)
-        abil = ability(abilityName,abilityId,self.getObj(playerId), targetId, castTime=castTime)
+        abil = ability(abilityName,abilityId,self.getObj(playerId), targetId,startTime=startTime, castTime=castTime)
         play.startCasting(abil)
         self.UI.startCast(abil)
     def hitAbility(self,playerId, abilityName, abilityId,targetId):
