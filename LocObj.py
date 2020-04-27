@@ -37,7 +37,7 @@ class LocObj:
     def show(self):
         self.canvas.itemconfigure(self.icon,state='normal')
         self.canvas.itemconfigure(self.label,state='normal')
-    def UpdateStats(self,hp,maxHp, mana, maxMana ):
+    def updateStats(self,hp,maxHp, mana, maxMana ):
         self.maxHp = maxHp
         self.hp = hp
         self.maxMana = maxMana

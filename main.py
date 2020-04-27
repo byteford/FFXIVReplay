@@ -35,7 +35,8 @@ try:
         if(data.go):
             data.go = FP.readNextLine()
         play.resetMove()
-    # next.mainloop()
+        ui.update()
+            # next.mainloop()
         time.sleep(data.playSpeed)
 
 except tk.TclError:

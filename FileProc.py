@@ -33,6 +33,7 @@ class FileProc:
                 return True
             if id == data.NetworkUpdateHP:
                 self.play.moveObj(procLine[2].lower(),float(procLine[10]),float(procLine[11]),float(procLine[12]),float(procLine[13]))
+                self.play.UpdateObjStat(procLine[2].lower(),float(procLine[4]),float(procLine[5]),float(procLine[6]),float(procLine[7]))
                 return True
             if id== data.NetworkStatusEffects:
                 self.play.moveObj(procLine[2].lower(),float(procLine[11]),float(procLine[12]),float(procLine[13]),float(procLine[14]))

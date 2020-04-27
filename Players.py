@@ -8,7 +8,7 @@ class players:
         self.cam = cam
         self.UI = UI
     def addObj(self,arr):#id,name, x,y,z,rot): procLine[2],procLine[3],float(procLine[17]),float(procLine[18]),float(procLine[19]),float(procLine[20])
-        id = arr[2]
+        id = arr[2].lower()
         name = arr[3]
         x = float(arr[17])
         y = float(arr[18])
@@ -38,6 +38,11 @@ class players:
             play.move(x,y) 
             
         return
+    def UpdateObjStat(self,id,hp,maxHp,mana,maxMana ):
+        play = self.getObj(id)
+        
+        if(play != None):
+            play.updateStats(hp,maxHp,mana,maxMana)
     def getObj(self,id):
         for p in self.players:
             if p.id == id:

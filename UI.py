@@ -160,6 +160,8 @@ class UI:
         return
     def clearPlayers(self):
         self.playerBar.clearPlayers()
+    def update(self):
+        self.playerBar.update()
     def __init__(self, root):
         self.root = root
         #self.cam = cam
