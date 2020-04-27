@@ -29,8 +29,6 @@ class LocObj:
         scaledy = ((data.playerOffset[1]-self.y)*data.scale) + data.center[1]
         self.canvas.coords(self.icon, scaledx, scaledy,scaledx + self.size,scaledy+self.size)
         self.canvas.coords(self.label, scaledx, scaledy)
-        if(data.log):
-            print("move: ", self.name, "to: ",scaledx," : ", scaledy, "act: " ,x," : ",y)
         pass
     def resetLoc(self):
         self.move(self.x,self.y)
@@ -49,10 +47,7 @@ class LocObj:
         self.casting = True
         self.ability = ability
     def isCasting(self, abilityID):
-        
         return self.casting and abilityID == self.ability.id
     def stopCasting(self):
-        temp = self.ability
         self.casting = False
         self.ability = None
-        return temp

@@ -71,7 +71,6 @@ class players:
         self.UI.startCast(abil)
     def hitAbility(self,playerId, abilityName, abilityId,targetId):
         play = self.getObj(playerId)
-        #print(play.isCasting(abilityId))
         if(play.isCasting(abilityId)):
             play.stopCasting()
             self.UI.stopCast(play)

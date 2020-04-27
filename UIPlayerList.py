@@ -6,6 +6,9 @@ class UIPlayerList():
         self.list = []
         self.Lroot = Lroot
         self.Rroot = Rroot
+    def updateTime(self, time):
+        for p in self.list:
+            p.updateCastTime(time)
     def addNPC(self, player):
         self.list.append(UIPlayer(self.Rroot, player))
     def addPlayer(self,player):
@@ -32,6 +35,7 @@ class UIPlayerList():
         self.getPlayerUI(player).stopCast()
 class UIPlayer():
     def __init__(self, root, player):
+        self.ability = None
         self.player = player
         self.root = root
         self.playerFrame = tk.Frame(self.root)
@@ -53,12 +57,15 @@ class UIPlayer():
         self.castBar = Progressbar(self.castFrame,maximum=100, value = 50)
         self.castBar.pack()
     def startCast(self, ability):
+        self.ability = ability
         self.castBar['value'] = 0
         self.castText.set(ability.name) 
     def hitCast(self, ability):
         if(ability.name != "Attack"):
+            self.ability = ability
             self.castText.set(ability.name) 
     def stopCast(self):
+        self.ability = None
         self.castBar['value'] = 100
         pass
     def update(self):
@@ -72,3 +79,6 @@ class UIPlayer():
         self.stats.destroy()
         self.playerLbl.destroy()
         self.playerFrame.destroy()
+    def updateCastTime(self,time):
+        if(self.ability != None):
+            self.castBar['value']=100-(self.ability.longLeft(time)*100)
