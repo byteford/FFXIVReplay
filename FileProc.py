@@ -89,3 +89,4 @@ class FileProc:
         self.UI = UI
         self.play = play
         self.UI.readLineEvt += self.readNextLine
+        self.UI.setReadLineEvt += self.setLineToRead

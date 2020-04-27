@@ -22,25 +22,20 @@ canvas.grid(row=0,column=0)
 #canvas.create_oval(data.center[0],data.center[1],data.center[0]+10,data.center[1]+10,fill='green')
 canvas.create_line(data.center[0] -5,data.center[1],data.center[0]+5,data.center[1])
 canvas.create_line(data.center[0] ,data.center[1]-5,data.center[0],data.center[1]+5)
-
-camra = cam()
-
-
-
-
-
-ui = UI(camra,root)
+ui = UI(root)
+camra = cam(ui)
 play = players(camra,canvas, ui)
 FP = FileProc(play, ui)
 data.go = FP.readNextLine()
-
-
-while 1:
-    root.update_idletasks()
-    root.update()
-    if(data.go):
-        data.go = FP.readNextLine()
-    play.resetMove()
-   # next.mainloop()
-    
-    time.sleep(data.playSpeed)
+try:
+    while 1:
+        root.update_idletasks()
+        root.update()
+        if(data.go):
+            data.go = FP.readNextLine()
+        play.resetMove()
+    # next.mainloop()
+        
+        time.sleep(data.playSpeed)
+except tk.TclError:
+    print("application closed")

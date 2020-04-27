@@ -1,5 +1,6 @@
 import data
 class cam:
+
     def setCam(self,x,y):
         if(data.log):
                 print("cam set to ",x ," : ", y)
@@ -11,3 +12,7 @@ class cam:
         self.setCam(data.LookPos[0],data.LookPos[1])
     def moveCam(self, x,y):
         self.setCam(data.LookPos[0]+x,data.LookPos[1]+y)
+
+    def __init__(self,ui):
+        ui.moveCamEvt += self.moveCam
+        ui.CamResetEvt += self.resetCam

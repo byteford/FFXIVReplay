@@ -3,18 +3,20 @@ import data
 from Event import Event
 class UI:
     def nextClick(self,event):
-        self.readLine()
+        self.readLineEvt()
         #self.fileProc.readNextLine()
     def contClick(self, event):
         data.go = True
-        self.readLine()
+        self.readLineEvt()
         #self.fileProc.readNextLine()
     def InClick(self, event):
         data.scale = data.scale*2
-        self.cam.resetCam()
+        #self.cam.resetCam()
+        self.CamResetEvt()
     def outClick(self, event):
         data.scale = data.scale/2
-        self.cam.resetCam()
+        #self.cam.resetCam()
+        self.CamResetEvt()
     def speedUpClick(self, event):
         data.playSpeed = data.playSpeed/2
         print(data.playSpeed)
@@ -25,13 +27,17 @@ class UI:
         data.fileName = tk.filedialog.askopenfilename()
         self.loadZone()
     def upClick(self, event):
-        self.cam.moveCam(0,1)
+        #self.cam.moveCam(0,1)
+        self.moveCamEvt(0,1)
     def downClick(self, event):
-        self.cam.moveCam(0,-1)
+        #self.cam.moveCam(0,-1)
+        self.moveCamEvt(0,-1)
     def leftClick(self, event):
-        self.cam.moveCam(1,0)
+        #self.cam.moveCam(1,0)
+        self.moveCamEvt(1,0)
     def rightClick(self, event):
-        self.cam.moveCam(-1,0)
+        #self.cam.moveCam(-1,0)
+        self.moveCamEvt(-1,0)
     def pauseClick(self, event):
         data.go = False
     def toggleLogClick(self,event):
@@ -40,7 +46,8 @@ class UI:
     
     def loadZone(self):
         def popupMenuCallBack(*args):
-            self.fileProc.setLineToRead(int(ZoneStart[int(self.popupVar.get().split('|')[0])]))
+            #self.fileProc.setLineToRead(int(ZoneStart[int(self.popupVar.get().split('|')[0])]))
+            self.setReadLineEvt(int(ZoneStart[int(self.popupVar.get().split('|')[0])]))
             print("202",ZoneStart)
         log = open(data.fileName, "r",encoding="utf-8")
         ZoneStart = []
@@ -138,10 +145,13 @@ class UI:
         return
     def clearPlayers(self):
         return
-    def __init__(self,cam, root):
+    def __init__(self, root):
         self.root = root
-        self.cam = cam
+        #self.cam = cam
         self.setupButtons()
         self.setUpSidePannel()
         self.readLineEvt = Event()
+        self.setReadLineEvt = Event()
+        self.moveCamEvt = Event()
+        self.CamResetEvt = Event()
         
