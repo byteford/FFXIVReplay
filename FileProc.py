@@ -33,29 +33,37 @@ class FileProc:
                 return True
             if id == data.NetworkUpdateHP:
                 self.play.moveObj(procLine[2].lower(),float(procLine[10]),float(procLine[11]),float(procLine[12]),float(procLine[13]))
-                self.play.UpdateObjStat(procLine[2].lower(),float(procLine[4]),float(procLine[5]),float(procLine[6]),float(procLine[7]))
+                #self.play.UpdateObjStat(procLine[2].lower(),float(procLine[4]),float(procLine[5]),float(procLine[6]),float(procLine[7]))
                 return True
             if id== data.NetworkStatusEffects:
                 self.play.moveObj(procLine[2].lower(),float(procLine[11]),float(procLine[12]),float(procLine[13]),float(procLine[14]))
+                self.play.UpdateObjStat(procLine[2].lower(),float(procLine[5]),float(procLine[6]),float(procLine[7]),float(procLine[8]))
                 return True
             if id == data.RemoveCombatant:
                 self.play.removeObj(procLine[2])
                 return True
             if id == data.NetworkAbility: #can move target
+                
                 self.play.moveObj(procLine[2].lower(),float(procLine[40]),float(procLine[41]),float(procLine[42]),float(procLine[43]))
+                self.play.UpdateObjStat(procLine[2].lower(),float(procLine[34]),float(procLine[35]),float(procLine[36]),float(procLine[37]))
                 if(procLine[2] != procLine[3]):
                     self.play.moveObj(procLine[6].lower(),float(procLine[30]),float(procLine[31]),float(procLine[32]),float(procLine[33]))
+                    self.play.UpdateObjStat(procLine[6].lower(),float(procLine[24]),float(procLine[25]),float(procLine[26]),float(procLine[27]))
                 return True
             if id == data.NetworkAOEAbility:
                 self.play.moveObj(procLine[2].lower(),float(procLine[40]),float(procLine[41]),float(procLine[42]),float(procLine[43]))
+                self.play.UpdateObjStat(procLine[2].lower(),float(procLine[34]),float(procLine[35]),float(procLine[36]),float(procLine[37]))
                 if(procLine[2] != procLine[3]):
                     self.play.moveObj(procLine[6].lower(),float(procLine[30]),float(procLine[31]),float(procLine[32]),float(procLine[33]))
+                    self.play.UpdateObjStat(procLine[6].lower(),float(procLine[24]),float(procLine[25]),float(procLine[26]),float(procLine[27]))
                 return True
             if id == data.NetworkDoT:
                 self.play.moveObj(procLine[2].lower(),float(procLine[13]),float(procLine[14]),float(procLine[15]),float(procLine[16]))
+                self.play.UpdateObjStat(procLine[2].lower(),float(procLine[7]),float(procLine[8]),float(procLine[9]),float(procLine[10]))
                 return True
             if id == data.NetworkEffectResult:
                 self.play.moveObj(procLine[2].lower,float(procLine[11]),float(procLine[12]),float(procLine[13]),float(procLine[14]))
+                self.play.UpdateObjStat(procLine[2].lower(),float(procLine[5]),float(procLine[6]),float(procLine[7]),float(procLine[8]))
                 return True
             if id == data.NetworkNameToggle:
                 print(procLine[2].lower())
