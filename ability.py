@@ -23,3 +23,4 @@ class ability:
                 return percent
             else:
                 print("error ability percent is :", percent, "is", self.name,"finishing")
+                return 0

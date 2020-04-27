@@ -81,4 +81,8 @@ class UIPlayer():
         self.playerFrame.destroy()
     def updateCastTime(self,time):
         if(self.ability != None):
-            self.castBar['value']=100-(self.ability.longLeft(time)*100)
+            longleft = self.ability.longLeft(time)
+            if(longleft >0):
+                self.castBar['value']=100-(longleft*100)
+            else:
+                self.stopCast()
