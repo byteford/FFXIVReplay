@@ -7,6 +7,9 @@ class ability:
         self.castTime = castTime
         self.targetId = targetId
         self.startTime = startTime
+        self.endTime = None
         if(startTime != 0):
             self.startTime = self.startTime.replace("0000","000").replace("T", " ").split("+")[0]
-            print(self.startTime, " ", castTime)
+            self.startTimedt = datetime.datetime.fromisoformat(self.startTime)
+            self.castTimeDelta = datetime.timedelta(seconds=float(castTime))
+            self.endTime = self.startTimedt + self.castTimeDelta

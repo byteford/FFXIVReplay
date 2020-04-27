@@ -160,9 +160,10 @@ class UI:
         self.playerBar.hitCast(ability)
         return
     def stopCast(self, player):
-        
         self.playerBar.stopCast(player)
         return
+    def updateTime(self, time):
+        print(time)
     def __init__(self, root):
         self.root = root
         #self.cam = cam
