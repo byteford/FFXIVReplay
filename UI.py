@@ -1,19 +1,20 @@
 import tkinter as tk
 import data
+from Event import Event
 class UI:
     def nextClick(self,event):
-        self.fileProc.readNextLine()
+        self.readLine()
+        #self.fileProc.readNextLine()
     def contClick(self, event):
         data.go = True
-        self.fileProc.readNextLine()
+        self.readLine()
+        #self.fileProc.readNextLine()
     def InClick(self, event):
         data.scale = data.scale*2
-        self.play.resetCam()
-        self.play.resetMove()
+        self.cam.resetCam()
     def outClick(self, event):
         data.scale = data.scale/2
-        self.play.resetCam()
-        self.play.resetMove()
+        self.cam.resetCam()
     def speedUpClick(self, event):
         data.playSpeed = data.playSpeed/2
         print(data.playSpeed)
@@ -24,13 +25,13 @@ class UI:
         data.fileName = tk.filedialog.askopenfilename()
         self.loadZone()
     def upClick(self, event):
-        self.play.moveCam(0,1)
+        self.cam.moveCam(0,1)
     def downClick(self, event):
-        self.play.moveCam(0,-1)
+        self.cam.moveCam(0,-1)
     def leftClick(self, event):
-        self.play.moveCam(1,0)
+        self.cam.moveCam(1,0)
     def rightClick(self, event):
-        self.play.moveCam(-1,0)
+        self.cam.moveCam(-1,0)
     def pauseClick(self, event):
         data.go = False
     def toggleLogClick(self,event):
@@ -137,10 +138,10 @@ class UI:
         return
     def clearPlayers(self):
         return
-    def __init__(self, root, play, fileProc):
+    def __init__(self,cam, root):
         self.root = root
-        self.play = play
-        self.fileProc = fileProc
+        self.cam = cam
         self.setupButtons()
         self.setUpSidePannel()
+        self.readLineEvt = Event()
         

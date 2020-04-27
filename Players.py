@@ -2,9 +2,10 @@ import data
 from LocObj import LocObj
 startHidden = {'11540','11541'}
 class players:    
-    def __init__(self, canvas):
+    def __init__(self,cam, canvas, UI):
         self.players = []
         self.canvas = canvas
+        self.cam = cam
     def addObj(self,arr):#id,name, x,y,z,rot): procLine[2],procLine[3],float(procLine[17]),float(procLine[18]),float(procLine[19]),float(procLine[20])
         id = arr[2]
         name = arr[3]
@@ -12,7 +13,7 @@ class players:
         y = float(arr[18])
         if(arr[12] != '44'):
             if(not self.players):
-                self.setCam(x,y)
+                self.cam.setCam(x,y)
             if(self.getObj(id) == None):
                 if(id.startswith("400")):
                     colour = 'red'
@@ -49,15 +50,4 @@ class players:
     def resetMove(self):
         for p in self.players:
             p.resetLoc()
-    def setCam(self,x,y):
-        if(data.log):
-                print("cam set to ",x ," : ", y)
-        data.LookPos = [x,y]
-        #data.playerOffset = [(data.center[0]+ x)*data.scale,(data.center[1] +y)*data.scale]
-        data.playerOffset = [x,y]
-        return
-    def resetCam(self):
-        self.setCam(data.LookPos[0],data.LookPos[1])
-    def moveCam(self, x,y):
-        self.setCam(data.LookPos[0]+x,data.LookPos[1]+y)
-        self.resetMove()
+

@@ -1,8 +1,7 @@
 import data
 import linecache
 class FileProc:
-    def __init__(self, play):
-        self.play = play
+
     def readNextLine(self):
         #line = log.readline()
         data.lineToRead = data.lineToRead + 1
@@ -86,3 +85,7 @@ class FileProc:
             return True
         print(procLine)
         print("NEW LINE")
+    def __init__(self, play, UI):
+        self.UI = UI
+        self.play = play
+        self.UI.readLineEvt += self.readNextLine
