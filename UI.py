@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter.ttk import *
 import data
 from Event import Event
 class UI:
@@ -142,6 +143,16 @@ class UI:
         return
     def addPlayer(self, player):
         print("add: ", player, " to the ui")
+        self.playerFrame = tk.Frame(self.sidePannelFrame)
+        self.playerFrame.pack()
+        self.player = tk.Label(self.playerFrame,text=player.name)
+        self.player.pack(side="left")
+        self.stats = tk.Frame(self.playerFrame)
+        self.stats.pack()
+        self.hp = Progressbar(self.stats)
+        self.hp.pack()
+        self.mana = Progressbar(self.stats)
+        self.mana.pack()
         return
     def clearPlayers(self):
         return

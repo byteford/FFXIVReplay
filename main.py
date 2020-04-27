@@ -27,6 +27,7 @@ camra = cam(ui)
 play = players(camra,canvas, ui)
 FP = FileProc(play, ui)
 data.go = FP.readNextLine()
+
 try:
     while 1:
         root.update_idletasks()
@@ -35,7 +36,7 @@ try:
             data.go = FP.readNextLine()
         play.resetMove()
     # next.mainloop()
-        
         time.sleep(data.playSpeed)
+
 except tk.TclError:
     print("application closed")

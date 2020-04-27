@@ -6,6 +6,7 @@ class players:
         self.players = []
         self.canvas = canvas
         self.cam = cam
+        self.UI = UI
     def addObj(self,arr):#id,name, x,y,z,rot): procLine[2],procLine[3],float(procLine[17]),float(procLine[18]),float(procLine[19]),float(procLine[20])
         id = arr[2]
         name = arr[3]
@@ -21,6 +22,7 @@ class players:
                     colour = 'green'
                 temp = LocObj(self.canvas, colour,x,y, name,id)
                 self.players.append(temp)
+                self.UI.addPlayer(temp)
                 if(arr[10] in startHidden ): # Furor adds that start hidden 
                     temp.hide()
                 return temp
