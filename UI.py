@@ -1,7 +1,7 @@
 import tkinter as tk
-from tkinter.ttk import *
 import data
 from Event import Event
+from UIPlayerList import UIPlayerList
 class UI:
     def nextClick(self,event):
         self.readLineEvt()
@@ -142,20 +142,24 @@ class UI:
         self.cast.pack(side="top")
         return
     def addPlayer(self, player):
-        print("add: ", player, " to the ui")
-        self.playerFrame = tk.Frame(self.sidePannelFrame)
-        self.playerFrame.pack()
-        self.player = tk.Label(self.playerFrame,text=player.name)
-        self.player.pack(side="left")
-        self.stats = tk.Frame(self.playerFrame)
-        self.stats.pack()
-        self.hp = Progressbar(self.stats)
-        self.hp.pack()
-        self.mana = Progressbar(self.stats)
-        self.mana.pack()
+        #self.playerFrame = tk.Frame(self.sidePannelFrame)
+        #self.playerFrame.pack()
+        #self.player = tk.Label(self.playerFrame,text=player.name)
+        #self.player.pack(side="left")
+        #self.stats = tk.Frame(self.playerFrame)
+        #self.stats.pack()
+        #self.hp = Progressbar(self.stats, maximum=player.maxHp, value=player.hp)
+        #self.hp.pack()
+        #self.mana = Progressbar(self.stats, maximum=player.maxMana, value=player.mana)
+        #self.mana.pack()
+        self.playerBar.addPlayer(player)
+        return
+    def removePlayer(self,player):
+        print("removePlay")
+        self.playerBar.removePlayer(player)
         return
     def clearPlayers(self):
-        return
+        self.playerBar.clearPlayers()
     def __init__(self, root):
         self.root = root
         #self.cam = cam
@@ -165,4 +169,7 @@ class UI:
         self.setReadLineEvt = Event()
         self.moveCamEvt = Event()
         self.CamResetEvt = Event()
+
+        self.playerBar = UIPlayerList(self.sidePannelFrame)
+        
         

@@ -1,6 +1,6 @@
 import data
 class LocObj:
-    def __init__(self,canvas, color, x, y, name, id):
+    def __init__(self,canvas, color, x, y, name, id,hp,maxHp, mana, maxMana ):
         self.canvas = canvas
         self.id = id
         self.size = 5
@@ -8,6 +8,10 @@ class LocObj:
         self.label = canvas.create_text(0,0,text=name)
         self.name = name
         self.move(x,y)
+        self.maxHp = maxHp
+        self.hp = hp
+        self.maxMana = maxMana
+        self.mana = mana
         #if(data.log):
         print(id,": Created: ", self.name, " at: ", self.x," : ", self.y)
     def __del__(self):
@@ -33,3 +37,8 @@ class LocObj:
     def show(self):
         self.canvas.itemconfigure(self.icon,state='normal')
         self.canvas.itemconfigure(self.label,state='normal')
+    def UpdateStats(self,hp,maxHp, mana, maxMana ):
+        self.maxHp = maxHp
+        self.hp = hp
+        self.maxMana = maxMana
+        self.mana = mana

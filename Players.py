@@ -12,6 +12,10 @@ class players:
         name = arr[3]
         x = float(arr[17])
         y = float(arr[18])
+        hp = int(arr[11])
+        maxHp = int(arr[12])
+        mana = int(arr[13])
+        maxMana = int(arr[14])
         if(arr[12] != '44'):
             if(not self.players):
                 self.cam.setCam(x,y)
@@ -20,7 +24,7 @@ class players:
                     colour = 'red'
                 else:
                     colour = 'green'
-                temp = LocObj(self.canvas, colour,x,y, name,id)
+                temp = LocObj(self.canvas, colour,x,y, name,id,hp,maxHp,mana,maxMana)
                 self.players.append(temp)
                 self.UI.addPlayer(temp)
                 if(arr[10] in startHidden ): # Furor adds that start hidden 
@@ -43,10 +47,12 @@ class players:
         play = self.getObj(id)
         if(play != None):
             self.players.remove(play)
+            self.UI.removePlayer(play)
             if(data.log):
                 print("Removed: ", id)
         return
     def clearObjs(self):
+        self.UI.clearPlayers()
         del self.players[:]
         return
     def resetMove(self):
