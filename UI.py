@@ -134,26 +134,41 @@ class UI:
         self.LoadFileBtn.grid(row=1,column=0)
         self.LoadFileBtn.bind('<Button-1>', self.loadFile)
         self.loadZone()
-    def onFrameConfigure(self, event):
+    def onRFrameConfigure(self, event):
         self.Rcanvas.configure(scrollregion=self.Rcanvas.bbox("all"))
         return
+    def onLFrameConfigure(self, event):
+        self.Lcanvas.configure(scrollregion=self.Lcanvas.bbox("all"))
+        return
     def setUpSidePannel(self):
-        self.LsidePannelFrame= tk.Frame(self.root)
-        self.LsidePannelFrame.grid(row=0,column=0)
-        self.tempFrame = tk.Frame(self.root)
-        self.tempFrame.grid(row=0,column=2)
+        self.LParentFrame = tk.Frame(self.root)
+        self.LParentFrame.grid(row=0,column=0)
 
-        self.Rcanvas = tk.Canvas(self.tempFrame)
+        self.Lcanvas = tk.Canvas(self.LParentFrame, width =200,height=500)
+        self.LsidePannelFrame = tk.Frame(self.Lcanvas)
+        self.Lscrollbar = tk.Scrollbar(self.LParentFrame, command=self.Lcanvas.yview)
+        self.Lcanvas.configure(yscrollcommand=self.Lscrollbar.set)
+        self.Lscrollbar.pack(side="left", fill="y")
+        self.Lcanvas.pack(side="right", fill="both", expand=True)
+        self.Lcanvas.create_window((0,0), window=self.LsidePannelFrame, anchor="nw")
+        self.LsidePannelFrame.bind("<Configure>",self.onLFrameConfigure)
+        self.Lcanvas.configure(scrollregion=self.Lcanvas.bbox("all"))
+
+
+
+
+        self.RParentFrame = tk.Frame(self.root)
+        self.RParentFrame.grid(row=0,column=2)
+
+        self.Rcanvas = tk.Canvas(self.RParentFrame, width =200,height=500)
         self.RsidePannelFrame = tk.Frame(self.Rcanvas)
-        self.Rscrollbar = tk.Scrollbar(self.tempFrame, command=self.Rcanvas.yview)
+        self.Rscrollbar = tk.Scrollbar(self.RParentFrame, command=self.Rcanvas.yview)
         self.Rcanvas.configure(yscrollcommand=self.Rscrollbar.set)
         self.Rscrollbar.pack(side="right", fill="y")
         self.Rcanvas.pack(side="left", fill="both", expand=True)
-        self.Rcanvas.create_window((4,4), window=self.RsidePannelFrame, anchor="nw")
-        #self.RsidePannelFrame.pack()
-        self.RsidePannelFrame.bind("<Configure>",self.onFrameConfigure)
+        self.Rcanvas.create_window((0,0), window=self.RsidePannelFrame, anchor="nw")
+        self.RsidePannelFrame.bind("<Configure>",self.onRFrameConfigure)
         self.Rcanvas.configure(scrollregion=self.Rcanvas.bbox("all"))
-        #self.RsidePannelFrame.grid(row=0,column=2)
         return
     def addPlayer(self, player):
         if(player.NPC):
