@@ -13,19 +13,21 @@ class players:
         name = arr[3]
         x = float(arr[17])
         y = float(arr[18])
+        rot = float(arr[20])
         hp = int(arr[11])
         maxHp = int(arr[12])
         mana = int(arr[13])
         maxMana = int(arr[14])
-        if(arr[12] != '44'):
+        if(arr[12] != '44' or True):
             if(not self.players):
                 self.cam.setCam(x,y)
             if(self.getObj(id) == None):
                 if(id.startswith("400")):
                     NPC = True
+                    print(arr)
                 else:
                     NPC = False
-                temp = LocObj(self.canvas, NPC,x,y, name,id,hp,maxHp,mana,maxMana)
+                temp = LocObj(self.canvas, NPC,x,y,rot, name,id,hp,maxHp,mana,maxMana)
                 self.players.append(temp)
                 self.UI.addPlayer(temp)
                 if(arr[10] in startHidden ): # Furor adds that start hidden 
@@ -36,7 +38,7 @@ class players:
         play = self.getObj(id)
         #print(id," : ",play)
         if(play != None):
-            play.move(x,y) 
+            play.move(x,y,rot) 
             
         return
     def UpdateObjStat(self,id,hp,maxHp,mana,maxMana ):

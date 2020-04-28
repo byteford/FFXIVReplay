@@ -134,11 +134,26 @@ class UI:
         self.LoadFileBtn.grid(row=1,column=0)
         self.LoadFileBtn.bind('<Button-1>', self.loadFile)
         self.loadZone()
+    def onFrameConfigure(self, event):
+        self.Rcanvas.configure(scrollregion=self.Rcanvas.bbox("all"))
+        return
     def setUpSidePannel(self):
         self.LsidePannelFrame= tk.Frame(self.root)
         self.LsidePannelFrame.grid(row=0,column=0)
-        self.RsidePannelFrame = tk.Frame(self.root)
-        self.RsidePannelFrame.grid(row=0,column=2)
+        self.tempFrame = tk.Frame(self.root)
+        self.tempFrame.grid(row=0,column=2)
+
+        self.Rcanvas = tk.Canvas(self.tempFrame)
+        self.RsidePannelFrame = tk.Frame(self.Rcanvas)
+        self.Rscrollbar = tk.Scrollbar(self.tempFrame, command=self.Rcanvas.yview)
+        self.Rcanvas.configure(yscrollcommand=self.Rscrollbar.set)
+        self.Rscrollbar.pack(side="right", fill="y")
+        self.Rcanvas.pack(side="left", fill="both", expand=True)
+        self.Rcanvas.create_window((4,4), window=self.RsidePannelFrame, anchor="nw")
+        #self.RsidePannelFrame.pack()
+        self.RsidePannelFrame.bind("<Configure>",self.onFrameConfigure)
+        self.Rcanvas.configure(scrollregion=self.Rcanvas.bbox("all"))
+        #self.RsidePannelFrame.grid(row=0,column=2)
         return
     def addPlayer(self, player):
         if(player.NPC):

@@ -20,6 +20,8 @@ notify= '00'
 notUse = ['11','12','25','27','29','33','35','249','250','251','253'] 
 #11 Hex B - Lists Party ids
 #12 Hex C - Players stats
+#25 Hex 19 - NetworkDeath - when omeone dies
+#27 Hex 1B- NetworkTargetIcon (headMarkers) [6] = '0060' e8s drop markers '0057' spread?
 #33 Hex 21 - Network6D is used for misc zone commands inc wipes 40000001 = lock out in seconds, 80000004 = tockout time adjuct
 #34 can be used to see if a mob is targetable
 #35 network teather
