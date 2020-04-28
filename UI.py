@@ -44,11 +44,10 @@ class UI:
     def toggleLogClick(self,event):
         data.log = not data.log
         print("Log set to: ", data.log)
-    
     def loadZone(self):
         def popupMenuCallBack(*args):
             #self.fileProc.setLineToRead(int(ZoneStart[int(self.popupVar.get().split('|')[0])]))
-            self.setReadLineEvt(int(ZoneStart[int(self.popupVar.get().split('|')[0])]))
+            self.setReadLineEvt(int(ZoneStart[int(self.popupVar.get().split('|')[0])])-1)
             print("202",ZoneStart)
         log = open(data.fileName, "r",encoding="utf-8")
         ZoneStart = []
