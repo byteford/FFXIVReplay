@@ -1,5 +1,6 @@
 import data
 import math
+import utility
 class LocObj:
     def __init__(self,canvas, NPC, x, y,rot, name, id,hp,maxHp, mana, maxMana ):
         self.canvas = canvas
@@ -29,20 +30,25 @@ class LocObj:
         self.x = x
         self.y = y
         self.rot = rot
-        scaledx = ((data.playerOffset[0]-self.x)* data.scale) + data.center[0]
-        scaledy = ((data.playerOffset[1]-self.y)*data.scale) + data.center[1]
+        scaledx, scaledy = utility.ScaleLoc(self.x, self.y)
+        #scaledx = ((data.playerOffset[0]-self.x)* data.scale) + data.center[0]
+        #scaledy = ((data.playerOffset[1]-self.y)*data.scale) + data.center[1]
         self.canvas.coords(self.icon, scaledx-self.size/2, scaledy-self.size/2,scaledx + self.size/2,scaledy+self.size/2)
         self.canvas.coords(self.label, scaledx, scaledy)
         self.canvas.coords(self.lookline,scaledx,scaledy,scaledx+math.cos(rot-1.5)*10,scaledy+math.sin(rot-1.5)*10)
         pass
     def resetLoc(self):
         self.move(self.x,self.y,self.rot)
+        if self.casting:
+            self.ability.updateAOE()
     def hide(self):
         self.canvas.itemconfigure(self.icon,state='hidden')
         self.canvas.itemconfigure(self.label,state='hidden')
+        self.canvas.itemconfigure(self.lookline,state='hidden')
     def show(self):
         self.canvas.itemconfigure(self.icon,state='normal')
         self.canvas.itemconfigure(self.label,state='normal')
+        self.canvas.itemconfigure(self.lookline,state='normal')
     def updateStats(self,hp,maxHp, mana, maxMana ):
         self.maxHp = maxHp
         self.hp = hp

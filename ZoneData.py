@@ -1,5 +1,6 @@
 import tkinter as tk
 import data
+import utility
 class ZoneData(list):
     def __init__(self):
         self.append(ZoneRect('38b',100,100,100,100))
@@ -46,8 +47,9 @@ class ZoneCircle(Zone):
         super(ZoneCircle,self).__init__(id,x,y,0,0,rad)
     def makeShape(self,canvas):
         self.canvas = canvas
-        x = ((data.playerOffset[0]-self.x)* data.scale) + data.center[0]
-        y = ((data.playerOffset[1]-self.y)*data.scale) + data.center[1]
+        x,y= utility.ScaleLoc(self.x,self.y)
+        #x = ((data.playerOffset[0]-self.x)* data.scale) + data.center[0]
+        #y = ((data.playerOffset[1]-self.y)*data.scale) + data.center[1]
         #x = data.center[0]-self.x
         #y = data.center[1]-self.y
         self.shape = canvas.create_oval(x,y,x+self.rad*data.scale,y+self.rad*data.scale)

@@ -50,6 +50,7 @@ class FileProc:
                 self.map.removeObj(procLine[2])
                 return True
             if id == data.NetworkStartsCasting:
+                print(procLine)
                 self.map.castAbility(procLine[2].lower(),procLine[5],procLine[4],procLine[6],procLine[1], procLine[8])
                 return True
             if id == data.NetworkAbility: #can move target
