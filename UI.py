@@ -194,6 +194,10 @@ class UI:
         return
     def updateTime(self, time):
         self.playerBar.updateTime(time)
+    def addBuff(self, buff):
+        self.playerBar.addBuff(buff)
+    def removeBuff(self, buff):
+        self.playerBar.removeBuff(buff)
     def __init__(self, root):
         self.root = root
         #self.cam = cam

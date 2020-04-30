@@ -4,7 +4,6 @@ import data
 import math
 class ability:
     def __init__(self, name, id, player,targetId,canvas,startTime=0.0, castTime= 0.0):
-        print(name,id,castTime)
         self.name = name
         self.id = id
         self.player = player
@@ -31,7 +30,6 @@ class ability:
                     self.show = False
                     self.timeToShow = 5
                     self.createCleave(58,45,270)
-                print(player.id,name, id)
     def longLeft(self, time):
         if(self.endTime == None):
             return 0
@@ -43,7 +41,8 @@ class ability:
             if(percent >=0):
                 return percent
             else:
-                print("error ability percent is :", percent, "is", self.name,"finishing")
+                if data.log:
+                    print("error ability percent is :", percent, "is", self.name,"finishing")
                 self.player.stopCasting()
                 return 0
     def createCleave(self, size,start,extent):

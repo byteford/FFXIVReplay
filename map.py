@@ -33,3 +33,7 @@ class map:
         self.play.hitAbility(playerId,abilityName,abilityId,targetId)
     def LoadZone(self, arr):
         self.zoneData.load(arr[2],self.canvas)
+    def gainBuff(self,playerId, buffName, buffId, targetId, time):
+        self.play.gainBuff(playerId,buffName,buffId,targetId, time)
+    def removeBuff(self,playerId,buffName,buffId,targetId):
+        self.play.removeBuff(playerId,buffName,buffId,targetId)

@@ -1,6 +1,7 @@
 import data
 from LocObj import LocObj
 from ability import ability
+from buff import buff
 startHidden = {'11540','11541', '9020'}
 class players:    
     def __init__(self,cam, canvas, UI):
@@ -24,7 +25,6 @@ class players:
             if(self.getObj(id) == None):
                 if(id.startswith("400")):
                     NPC = True
-                    print(arr)
                 else:
                     NPC = False
                 temp = LocObj(self.canvas, NPC,x,y,rot, name,id,hp,maxHp,mana,maxMana)
@@ -80,4 +80,11 @@ class players:
             return
         else:
             self.UI.hitCast(ability(abilityName,abilityId,play, targetId,self.canvas))
+    def gainBuff(self,playerId, buffName, buffId, targetId, time):
+        #print("gain Buff",playerId,buffName,buffId,targetId, time)
+        play = self.getObj(targetId)
+        self.UI.addBuff(play.addBuff(buff(buffId,buffName,time,play)))
+    def removeBuff(self,playerId,buffName,buffId,targetId):
+        self.UI.removeBuff(self.getObj(targetId).removeBuff(buffId))
+        #print(buffId, targetId, buffName)
 

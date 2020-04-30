@@ -18,6 +18,7 @@ class LocObj:
         self.mana = mana
         self.casting = False
         self.ability = None
+        self.buffs = []
         #if(data.log):
         print(id,": Created: ", self.name, " at: ", self.x," : ", self.y)
     def __del__(self):
@@ -64,3 +65,15 @@ class LocObj:
             self.ability.clear()
         self.casting = False
         self.ability = None
+    def addBuff(self, buff):
+        self.buffs.append(buff)
+        return buff
+    def getBuff(self,buffID):
+        for b in self.buffs:
+            if b.ID == buffID:
+                return b
+        return None
+    def removeBuff(self,buffID):
+        temp = self.getBuff(buffID)
+        self.buffs.remove(temp)
+        return temp

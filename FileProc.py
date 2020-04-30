@@ -25,7 +25,6 @@ class FileProc:
                 print(procLine)
 
             if id in data.notUse:
-                print(procLine)
                 return True
             if id == data.ChangeZone:
                 if(data.log):
@@ -50,7 +49,6 @@ class FileProc:
                 self.map.removeObj(procLine[2])
                 return True
             if id == data.NetworkStartsCasting:
-                print(procLine)
                 self.map.castAbility(procLine[2].lower(),procLine[5],procLine[4],procLine[6],procLine[1], procLine[8])
                 return True
             if id == data.NetworkAbility: #can move target
@@ -86,6 +84,11 @@ class FileProc:
                     temp.hide()
                 
                 return True
+            if id == data.NetworkBuff:
+                self.map.gainBuff(procLine[5].lower(), procLine[3],procLine[2],procLine[7].lower(),procLine[4]) #9 buff info?
+            if id == data.NetworkBuffRemove:
+                print(procLine)
+                self.map.removeBuff(procLine[5].lower(),procLine[3],procLine[2],procLine[7].lower())
             if id == data.EOF:
                 print("END OF FILE")
                 return False

@@ -31,8 +31,12 @@ class UIPlayerList():
     def hitCast(self,ability):
         self.getPlayerUI(ability.player).hitCast(ability)
     def stopCast(self, player):
-        
         self.getPlayerUI(player).stopCast()
+    def addBuff(self,buff):
+        self.getPlayerUI(buff.player).addBuff(buff)
+    def removeBuff(self, buff):
+        self.getPlayerUI(buff.player).removeBuff(buff)
+        print("remove Buff")
 class UIPlayer():
     def __init__(self, root, player):
         self.ability = None
@@ -56,6 +60,8 @@ class UIPlayer():
         self.castLable.pack(side="left")
         self.castBar = Progressbar(self.castFrame,maximum=100, value = 50)
         self.castBar.pack()
+        self.buffList = tk.Frame(self.playerFrame)
+        self.buffList.pack()
     def startCast(self, ability):
         self.ability = ability
         self.castBar['value'] = 0
@@ -68,6 +74,12 @@ class UIPlayer():
         self.ability = None
         self.castBar['value'] = 100
         pass
+    def addBuff(self,buff):
+        bufflbl = tk.Label(self.buffList, text=buff.name)
+        bufflbl.pack()
+        buff.addUI(bufflbl)
+    def removeBuff(self, buff):
+        buff.buffLbl.destroy()
     def update(self):
         self.hp['value'] = self.player.hp
         self.mana['value'] = self.player.mana
