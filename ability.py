@@ -52,6 +52,7 @@ class ability:
         self.lSize = size
         self.size = self.lSize*data.scale
         self.pie = self.canvas.create_arc(self.x-self.size/2,self.y-self.size/2,self.x+self.size/2,self.y+self.size/2, start=math.degrees(self.player.rot-1.5) + start,extent=extent, fill="yellow")
+        self.canvas.tag_lower(self.pie)
         if not self.show:
             self.hideAOE()
     def updateAOE(self):
