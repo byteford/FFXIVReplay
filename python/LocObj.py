@@ -60,5 +60,7 @@ class LocObj:
     def isCasting(self, abilityID):
         return self.casting and abilityID == self.ability.id
     def stopCasting(self):
+        if self.casting:
+            self.ability.clear()
         self.casting = False
         self.ability = None
